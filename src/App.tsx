@@ -13,8 +13,6 @@ const App: React.FC = () => {
         style={{
           flex: 1,
           backgroundColor: '#312e38',
-          justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
         <Routes />
