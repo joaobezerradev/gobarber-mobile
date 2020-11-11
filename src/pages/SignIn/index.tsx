@@ -23,10 +23,12 @@ import {
   CreateAccontButton,
   CreateAccontButtonText,
 } from './styles';
+import { TextInput } from 'react-native';
 
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const handleSubmit = useCallback((data: object) => {
     console.log(data);
@@ -54,9 +56,30 @@ const SignIn: React.FC = () => {
               ref={formRef}
               onSubmit={handleSubmit}
             >
-              <Input name="email" icon="mail" placeholder="E-mail" />
+              <Input
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
+              />
 
-              <Input name="password" icon="lock" placeholder="Senha" />
+              <Input
+                name="password"
+                icon="lock"
+                placeholder="Senha"
+                secureTextEntry
+                returnKeyType="send"
+                ref={passwordInputRef}
+                onSubmitEditing={() => {
+                  formRef.current?.submitForm();
+                }}
+              />
 
               <Button
                 onPress={() => {
