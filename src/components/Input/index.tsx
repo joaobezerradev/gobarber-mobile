@@ -66,7 +66,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     setIsFilled(!!inputValueRef.current.value);
   }, []);
   return (
-    <Container isFocused={isFocused}>
+    <Container isFocused={isFocused} isErrored={!!error}>
       <Icon
         name={icon}
         size={20}
